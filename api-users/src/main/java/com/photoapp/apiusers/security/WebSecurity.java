@@ -38,6 +38,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
       .antMatchers("/users/**")
       .hasIpAddress(environment.getProperty("gateway.ip"))
       .and().addFilter(getAuthenticationFilter());
+
     http.headers().frameOptions().disable();
   }
 

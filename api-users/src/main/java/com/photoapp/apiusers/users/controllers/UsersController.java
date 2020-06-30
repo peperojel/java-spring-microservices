@@ -10,6 +10,8 @@ import com.photoapp.apiusers.users.models.CreateUserResponseModel;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RefreshScope
 @RequestMapping("/users")
 public class UsersController {
   
@@ -30,9 +33,17 @@ public class UsersController {
   @Autowired
   UsersService userService;
 
+  @Value("${message:Hello default}")
+  private String message;
+
   @GetMapping("/status/check")
   public String status() {
     return "Working on port " + env.getProperty("local.server.port");
+  }
+
+  @GetMapping("/status/message")
+  public String getMessage() {
+    return message;
   }
 
   @PostMapping(
