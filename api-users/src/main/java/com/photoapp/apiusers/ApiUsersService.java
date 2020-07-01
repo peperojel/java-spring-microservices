@@ -8,10 +8,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 @EnableEurekaClient
-public class DemoApplication {
+public class ApiUsersService {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(ApiUsersService.class, args);
 	}
 
 	@Bean
